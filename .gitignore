@@ -24,3 +24,6 @@ lerna-debug.log*
 .tmp
 /.next
 /.next
+/.next/dev
+.next/dev/cache/turbopack/52faae3d/LOG
+.next/dev/cache/turbopack/52faae3d/CURRENT
