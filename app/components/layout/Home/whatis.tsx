@@ -53,7 +53,7 @@ export default function WhatIsSection() {
         <div className="w-full">
           <div className="rounded-3xl overflow-hidden">
             <Image
-              src="/images/plant-tech.jpg" // place your image here
+              src="/what1.jpg" // place your image here
               alt="Smart Farming"
               width={600}
               height={400}
