@@ -35,7 +35,7 @@ export default function RegisterContactPage() {
         <div className="flex flex-wrap justify-center gap-6 mb-8">
           
           {/* MOBILE */}
-          <div className="bg-[#E7E1C8] px-10 py-6 rounded-2xl min-w-[280px] shadow-sm">
+          <div className="bg-[#E7E1C8] px-10 py-6 rounded-2xl min-w-70 shadow-sm">
             <p className="text-green-800 font-medium mb-2">Mobile</p>
             <p className="text-green-700 text-sm">
               +91 81 84 94 50 39
@@ -43,7 +43,7 @@ export default function RegisterContactPage() {
           </div>
 
           {/* EMAIL */}
-          <div className="bg-[#E7E1C8] px-10 py-6 rounded-2xl min-w-[280px] shadow-sm">
+          <div className="bg-[#E7E1C8] px-10 py-6 rounded-2xl min-w-70 shadow-sm">
             <p className="text-green-800 font-medium mb-2">Email</p>
             <p className="text-green-700 text-sm">
               business-support@kropsysupport.com

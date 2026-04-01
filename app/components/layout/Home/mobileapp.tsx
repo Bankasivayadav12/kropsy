@@ -32,7 +32,7 @@ export default function MobileComingSoon() {
           
           {/* LEFT CARD */}
             {/* CARD */}
-      <div className="w-full max-w-2xl bg-gradient-to-br from-[#3E7C59] to-[#4E8A66] rounded-[40px] p-10 border border-white/20 shadow-lg">
+      <div className="w-full max-w-2xl bg-linear-to-br from-[#3E7C59] to-[#4E8A66] rounded-[40px] p-10 border border-white/20 shadow-lg">
         
         {/* TITLE */}
         <h2 className="text-yellow-400 text-2xl md:text-3xl font-semibold text-center mb-8">

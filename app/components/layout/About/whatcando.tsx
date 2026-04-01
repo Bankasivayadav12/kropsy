@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 export default function WhatWeDo() {
@@ -134,7 +135,7 @@ export default function WhatWeDo() {
         {images.map((img, index) => (
           <div
             key={index}
-            className="w-full h-[220px] sm:h-[260px] md:h-[300px] rounded-2xl overflow-hidden shadow-md transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+            className="w-full h-55 sm:h-65 md:h-75 rounded-2xl overflow-hidden shadow-md transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
             <img
               src={img}

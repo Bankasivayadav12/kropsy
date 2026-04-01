@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 export default function AboutHero() {
@@ -33,8 +34,8 @@ export default function AboutHero() {
             key={index}
             className={`rounded-2xl overflow-hidden shadow-lg ${
               index === 1
-                ? "w-[380px] h-[240px] scale-105"
-                : "w-[300px] h-[180px]"
+                ? "w-95 h-60 scale-105"
+                : "w-75 h-45"
             }`}
           >
             <img

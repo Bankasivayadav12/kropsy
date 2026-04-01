@@ -13,7 +13,7 @@ export default function DigitalCardPage() {
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
         
         {/* LEFT CARD */}
-         <div className="w-full max-w-xl bg-gradient-to-br from-[#3E7C59] to-[#4E8A66] rounded-[30px] p-8 shadow-lg border border-white/20">
+         <div className="w-full max-w-xl bg-linear-to-br from-[#3E7C59] to-[#4E8A66] rounded-[30px] p-8 shadow-lg border border-white/20">
         
         {/* QR ICON */}
         <div className="text-yellow-400 text-5xl mb-6">
@@ -55,7 +55,7 @@ export default function DigitalCardPage() {
           <ul className="space-y-3 mb-5">
             {features.map((item, index) => (
               <li key={index} className="flex items-start gap-2 text-green-200 text-sm">
-                <span className="text-yellow-400 mt-[2px]">✔</span>
+                <span className="text-yellow-400 mt-0.5">✔</span>
                 <span>{item}</span>
               </li>
             ))}

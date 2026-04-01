@@ -1,7 +1,8 @@
 "use client";
-
-import { Image } from "lucide-react";
+import Image from "next/image";
 export default function ServicesPage() {
+
+    
   const services = [
     {
       title: "AI Crop Monitoring",
@@ -84,13 +85,15 @@ export default function ServicesPage() {
             {/* Icon + Title */}
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-green-800 p-2 rounded-lg">
-                <Image
-                  src={service.icon}
-                  alt={service.title}
-                  width={20}
-                  height={20}
-                  className="invert"
-                />
+                <div className="bg-green-800 p-2 rounded-lg">
+  <Image
+    src={service.icon}
+    alt={service.title}
+    width={20}
+    height={20}
+    className="invert"
+  />
+</div>
               </div>
               <h3 className="text-green-800 font-semibold text-md">
                 {service.title}

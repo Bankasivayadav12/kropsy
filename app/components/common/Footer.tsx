@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
 
           <p className="text-yellow-500 italic text-lg">
-            Farmer's Friend, Future of Farming
+            Farmer&apos;s Friend, Future of Farming
           </p>
         </div>
 
