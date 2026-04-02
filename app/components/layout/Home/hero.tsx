@@ -41,8 +41,13 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full h-[80vh] rounded-2xl overflow-hidden">
-
+    <div className="relative 
+  h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] 
+  rounded-2xl overflow-hidden 
+  mt-6 sm:mt-8 md:mt-10 
+  max-w-[95%] sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-[1400px] 
+  mx-auto 
+  ">
       {/* 🎥 Background Video */}
       <video
         key={slides[current].video}
