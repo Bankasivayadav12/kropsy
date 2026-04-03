@@ -4,9 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname(); // 🔥 get current route
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -34,27 +36,53 @@ const Navbar = () => {
 
           {/* 🖥️ Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.path}
-                className="text-gray-700 hover:text-green-600 transition font-medium"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.path;
+
+              return (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  className={`font-medium transition
+                    ${
+                      isActive
+                        ? "text-[#D4AF2A]" // ✅ Active color
+                        : "text-gray-700 hover:text-[#D4AF2A]"
+                    }
+                  `}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* 🟢 Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Link href="/register">
-              <button className="bg-green-700 text-white px-5 py-2 rounded-full font-medium hover:bg-green-800 transition">
+              <button
+                className={`px-5 py-2 rounded-full font-medium transition
+                  ${
+                    pathname === "/register"
+                      ? "bg-green-800 text-white"
+                      : "bg-green-700 text-white hover:bg-green-800"
+                  }
+                `}
+              >
                 Register Now
               </button>
             </Link>
 
             <Link href="/contact">
-              <button className="border border-green-700 text-green-700 px-5 py-2 rounded-full font-medium hover:bg-green-50 transition">
+              <button
+                className={`px-5 py-2 rounded-full font-medium transition
+                  ${
+                    pathname === "/contact"
+                      ? "bg-green-700 text-white"
+                      : "border border-green-700 text-green-700 hover:bg-green-50"
+                  }
+                `}
+              >
                 Contact Support
               </button>
             </Link>
@@ -72,16 +100,26 @@ const Navbar = () => {
       {/* 📱 Mobile Menu */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4 space-y-4 bg-white shadow">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.path}
-              onClick={() => setIsOpen(false)}
-              className="block text-gray-700 hover:text-green-600 font-medium"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.path;
+
+            return (
+              <Link
+                key={link.name}
+                href={link.path}
+                onClick={() => setIsOpen(false)}
+                className={`block font-medium transition
+                  ${
+                    isActive
+                      ? "text-[#D4AF2A]"
+                      : "text-gray-700 hover:text-[#D4AF2A]"
+                  }
+                `}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
 
           <div className="flex flex-col gap-3 pt-3">
             <Link href="/register">
