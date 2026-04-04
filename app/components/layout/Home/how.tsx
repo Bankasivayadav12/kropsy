@@ -26,10 +26,10 @@ export default function HowWorksPage() {
       <div className="relative flex flex-wrap justify-center gap-16 mb-16">
 
   {/* 1 → 2 */}
-  <div className="absolute top-[75px] left-[32%] w-[110px] h-[60px] border-b-2 border-dashed border-gray-400 rounded-b-full"></div>
+  <div className="absolute top-18.75 left-[32%] w-27.5 h-15 border-b-2 border-dashed border-gray-400 rounded-b-full"></div>
 
   {/* 2 → 3 */}
-  <div className="absolute top-[95px] left-[50%] -translate-x-1/2 w-[140px] border-t-2 border-dashed border-gray-400"></div>
+  <div className="absolute top-23.75 left-[50%] -translate-x-1/2 w-35 border-t-2 border-dashed border-gray-400"></div>
 
   {steps.slice(0, 3).map((step) => (
     <div
@@ -48,10 +48,10 @@ export default function HowWorksPage() {
       <div className="relative flex flex-wrap justify-center gap-32 mb-10">
 
         {/* 🔵 3 → 4 (curve down right) */}
-        <div className="absolute right-[28%] -top-[120px] w-[120px] h-[120px] border-r-2 border-b-2 border-dashed border-gray-500 rounded-br-full"></div>
+        <div className="absolute right-[28%] -top-30 w-30 h-30 border-r-2 border-b-2 border-dashed border-gray-500 rounded-br-full"></div>
 
         {/* 🔵 5 → 4 (straight) */}
-        <div className="absolute top-[40px] left-[42%] w-[140px] border-t-2 border-dashed border-gray-500"></div>
+        <div className="absolute top-10 left-[42%] w-35 border-t-2 border-dashed border-gray-500"></div>
 
         {/* Step 5 */}
         <div className="bg-white w-48 h-40 rounded-2xl shadow-sm flex flex-col items-center justify-center text-center px-4 relative z-10">
@@ -77,7 +77,7 @@ export default function HowWorksPage() {
       {/* Button */}
       <div className="flex justify-center">
         <button className="bg-green-800 text-white px-6 py-2 rounded-full text-sm hover:bg-green-700 transition">
-          Learn More Details
+          Learn More Detail
         </button>
       </div>
     </div>
