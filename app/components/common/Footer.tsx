@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 mb-4">
             {/* Replace with your logo */}
             <Image
-                src="/logo.png"
+                src="/kropsyicon.svg"
                 alt="KROPSY Logo"
                 width={70}
                 height={70}

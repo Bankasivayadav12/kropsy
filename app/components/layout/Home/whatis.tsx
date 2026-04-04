@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function WhatIsSection() {
   const features = [
@@ -31,8 +32,14 @@ export default function WhatIsSection() {
       {/* 🔶 Content */}
       <div className="mt-14 grid md:grid-cols-2 gap-10 items-center">
 
-        {/* 🟫 Left Card */}
-        <div className="bg-[#ded6c3] rounded-3xl p-8 md:p-10 shadow-sm">
+        {/* 🟫 Left Card Animation */}
+        <motion.div
+          initial={{ x: -150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="bg-[#ded6c3] rounded-3xl p-8 md:p-10 shadow-sm"
+        >
           <h3 className="text-xl md:text-2xl font-semibold text-green-900 mb-6 text-center">
             KROPSY helps in:
           </h3>
@@ -47,20 +54,26 @@ export default function WhatIsSection() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* 🖼️ Right Image */}
-        <div className="w-full">
+        {/* 🖼️ Right Image Animation */}
+        <motion.div
+          initial={{ x: 150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-full"
+        >
           <div className="rounded-3xl overflow-hidden">
             <Image
-              src="/what1.jpg" // place your image here
+              src="/what1.jpg"
               alt="Smart Farming"
               width={600}
               height={400}
               className="w-full h-full object-cover rounded-3xl"
             />
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

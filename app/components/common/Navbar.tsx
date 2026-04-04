@@ -27,7 +27,7 @@ const Navbar = () => {
           {/* 🔰 Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.png"
+              src="/kropsyicon.svg"
               alt="Kropsy Logo"
               width={70}
               height={70}
