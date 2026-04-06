@@ -31,3 +31,6 @@ lerna-debug.log*
 
 /lib/generated/prisma
 .next/dev/cache/turbopack/52faae3d/CURRENT
+/.next/dev/cache/turbopack/52faae3d
+/.next/dev/cache/turbopack
+/.next/dev/cache
