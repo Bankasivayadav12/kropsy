@@ -1,12 +1,26 @@
 "use client";
+
 import Image from "next/image";
+import Link from "next/link";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
   const links = [
-    ["Home", "About"],
-    ["Services", "How It Work"],
-    ["Register", "Contact"],
+    [
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+    ],
+    [
+      { name: "Services", path: "/services" },
+      { name: "How It Work", path: "/how-it-works" },
+    ],
+    [
+      { name: "Register", path: "/register" },
+      { name: "Contact", path: "/contact" },
+    ],
   ];
 
   return (
@@ -16,13 +30,13 @@ export default function Footer() {
         {/* LEFT - LOGO & TAGLINE */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            {/* Replace with your logo */}
             <Image
-                src="/kropsyicon.svg"
-                alt="KROPSY Logo"
-                width={70}
-                height={70}
-                className="object-contain"
+              src="/kropsyicon.svg"
+              alt="KROPSY Logo"
+              width={70}
+              height={70}
+              className="object-contain"
+              priority
             />
           </div>
 
@@ -40,9 +54,17 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-y-4 text-green-800 text-lg">
             {links.map((row, i) =>
               row.map((item, index) => (
-                <span key={`${i}-${index}`} className="cursor-pointer hover:underline">
-                  {item}
-                </span>
+                <Link
+                  href={item.path}
+                  key={`${i}-${index}`}
+                  className={`cursor-pointer hover:underline ${
+                    pathname === item.path
+                      ? "font-semibold underline"
+                      : ""
+                  }`}
+                >
+                  {item.name}
+                </Link>
               ))
             )}
           </div>
@@ -73,6 +95,13 @@ export default function Footer() {
 
       {/* BOTTOM LINE */}
       <div className="mt-10 border-t border-green-800/40"></div>
+      
+      
+
+      {/* COPYRIGHT */}
+      <p className="mt-6 text-sm text-green-800 items-center justify-center text-center">
+        © 2026 KROPSY. All rights reserved.
+      </p>
     </footer>
   );
 }
