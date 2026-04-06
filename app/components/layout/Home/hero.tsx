@@ -45,10 +45,10 @@ export default function HeroSection() {
 
   return (
     <div className="relative 
-  h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] 
+  h-[60vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] 
   rounded-2xl overflow-hidden 
-  mt-6 sm:mt-8 md:mt-5 
-  max-w-[95%] sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-350 
+  mt-6 sm:mt-10 md:mt-3 lg:mt-3 xl:mt-3 2xl:mt-3
+  max-w-[95%] sm:max-w-2xl md:max-w-3xl lg:max-w-6xl xl:max-w-350 
   mx-auto 
   ">
       {/* 🎥 Background Video */}
@@ -65,8 +65,8 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* 📄 Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-10 md:px-26 text-white max-w-3xl mt-25">
-        <h1 className="text-2xl md:text-4xl font-bold leading-snug">
+      <div className="relative z-10 h-full flex flex-col justify-center px-10 md:px-26 text-white max-w-3xl mt-25 md:mt-10">
+        <h1 className="text-2xl md:text-3xl  font-bold leading-snug">
           {slides[current].title}
         </h1>
 
