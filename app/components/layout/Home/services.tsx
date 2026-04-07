@@ -1,6 +1,6 @@
 "use client";
-import { motion, Variants } from "framer-motion";
 
+import { motion, Variants } from "framer-motion";
 import {
   LuCamera,
   LuFlaskConical,
@@ -8,7 +8,6 @@ import {
   LuUpload,
   LuShoppingCart,
 } from "react-icons/lu";
-
 
 export default function ServicesPage() {
   const services = [
@@ -71,119 +70,72 @@ export default function ServicesPage() {
     },
   ];
 
-  // ─── Animation Variants ───────────────────────────────────────────────────
+  // ✅ FIXED VARIANTS (ALL CONSISTENT: hidden → show)
 
-  /** Heading: fade + slide up */
-const headingVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: -40,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
+  const headingVariants: Variants = {
+    hidden: { opacity: 0, y: -40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
     },
-  },
-};
+  };
 
-  /**
-   * Cards: staggered fade + slide-up from below.
-   * All cards share the same entrance direction (up) for a clean, unified feel.
-   * The parent `container` staggers children automatically.
-   */
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
-    visible: {
+    show: {
       transition: {
-        staggerChildren: 0.12, // delay between each card
-        delayChildren: 0.1,    // small pause after heading settles
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       },
     },
   };
 
-const cardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 60,
-    scale: 0.95,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
     },
-  },
-};
+  };
 
-  /**
-   * List items inside each card: staggered fade-in from the left.
-   * Triggered once the card itself is visible.
-   */
-  const listContainerVariants = {
+  const listContainerVariants: Variants = {
     hidden: {},
-    visible: {
+    show: {
       transition: { staggerChildren: 0.07, delayChildren: 0.2 },
     },
   };
 
-const listItemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
+  const listItemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
     },
-  },
-};
+  };
 
-  /** Button: subtle bounce on mount */
- const buttonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    scale: 0.95,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
+  const buttonVariants: Variants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
-  },
-  hover: {
-    scale: 1.05,
-    transition: {
-      duration: 0.2,
-    },
-  },
-  tap: {
-    scale: 0.95,
-  },
-};
-  // ─── Render ───────────────────────────────────────────────────────────────
+  };
 
   return (
     <div className="bg-[#E7E1C8] min-h-screen py-16 px-4">
 
-      {/* Heading */}
+      {/* HEADER */}
       <motion.div
         variants={headingVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.6 }}
+        whileInView="show"
+        viewport={{ once: true }}
         className="text-center mb-12"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-green-800">
@@ -194,12 +146,12 @@ const listItemVariants: Variants = {
         </p>
       </motion.div>
 
-      {/* Cards Grid — parent handles stagger */}
+      {/* GRID */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        whileInView="show"
+        viewport={{ once: true }}
         className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         {services.map((service, index) => {
@@ -209,20 +161,14 @@ const listItemVariants: Variants = {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{
-                y: -6,
-                boxShadow: "0 16px 40px rgba(0,0,0,0.10)",
-                transition: { duration: 0.25, ease: "easeOut" },
-              }}
-              className="bg-white rounded-2xl p-6 shadow-sm transition-shadow duration-300"
+              whileHover={{ y: -6 }}
+              className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
             >
-              {/* Icon + Title */}
+              {/* ICON */}
               <div className="flex items-center gap-3 mb-4">
-                {/* Icon wrapper: scale pulse on card hover */}
                 <motion.div
                   className="bg-green-800 p-2 rounded-lg"
-                  whileHover={{ scale: 1.15, rotate: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                  whileHover={{ scale: 1.1 }}
                 >
                   <Icon className="text-white w-5 h-5" />
                 </motion.div>
@@ -232,13 +178,13 @@ const listItemVariants: Variants = {
                 </h3>
               </div>
 
-              {/* List items — staggered once card is visible */}
+              {/* LIST */}
               <motion.ul
-                className="space-y-3 text-sm text-green-700"
                 variants={listContainerVariants}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                whileInView="show"
+                viewport={{ once: true }}
+                className="space-y-3 text-sm text-green-700"
               >
                 {service.points.map((point, i) => (
                   <motion.li
@@ -246,7 +192,7 @@ const listItemVariants: Variants = {
                     variants={listItemVariants}
                     className="flex items-start gap-2"
                   >
-                    <div className="w-5 h-5 shrink-0 flex items-center justify-center border border-green-700 rounded-full text-green-700 text-xs">
+                    <div className="w-5 h-5 flex items-center justify-center border border-green-700 rounded-full text-green-700 text-xs">
                       ✓
                     </div>
                     <span>{point}</span>
@@ -258,26 +204,23 @@ const listItemVariants: Variants = {
         })}
       </motion.div>
 
-      {/* CTA Button */}
+      {/* BUTTON */}
       <motion.div
-        className="flex justify-center mt-12"
         variants={buttonVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.8 }}
+        whileInView="show"
+        viewport={{ once: true }}
+        className="flex justify-center mt-12"
       >
         <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="bg-green-800 text-white px-6 py-2 rounded-full text-sm"
-          whileHover={{
-            scale: 1.05,
-            backgroundColor: "#15803d", // green-700
-            transition: { duration: 0.2 },
-          }}
-          whileTap={{ scale: 0.96 }}
         >
           View all Services
         </motion.button>
       </motion.div>
+
     </div>
   );
 }

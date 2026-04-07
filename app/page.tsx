@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <HeroSection/>
       <WhatIsSection/>
-      <ServicesPage/>
+      <ServicesPage />
       <ChoosePage/>
       <DigitalCardPage/>
       <HowWorksPage/>
