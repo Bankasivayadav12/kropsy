@@ -1,6 +1,6 @@
 "use client";
+import { motion, Variants } from "framer-motion";
 
-import { motion } from "framer-motion";
 import {
   LuCamera,
   LuFlaskConical,
@@ -8,6 +8,7 @@ import {
   LuUpload,
   LuShoppingCart,
 } from "react-icons/lu";
+
 
 export default function ServicesPage() {
   const services = [
@@ -73,14 +74,20 @@ export default function ServicesPage() {
   // ─── Animation Variants ───────────────────────────────────────────────────
 
   /** Heading: fade + slide up */
-  const headingVariants = {
-    hidden: { y: 32, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+const headingVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: -40,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
     },
-  };
+  },
+};
 
   /**
    * Cards: staggered fade + slide-up from below.
@@ -97,15 +104,22 @@ export default function ServicesPage() {
     },
   };
 
-  const cardVariants = {
-    hidden: { y: 48, opacity: 0, scale: 0.97 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+    scale: 0.95,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
     },
-  };
+  },
+};
 
   /**
    * List items inside each card: staggered fade-in from the left.
@@ -118,25 +132,47 @@ export default function ServicesPage() {
     },
   };
 
-  const listItemVariants = {
-    hidden: { x: -14, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.35, ease: "easeOut" },
+const listItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
     },
-  };
+  },
+};
 
   /** Button: subtle bounce on mount */
-  const buttonVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+ const buttonVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.95,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
     },
-  };
-
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  tap: {
+    scale: 0.95,
+  },
+};
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (

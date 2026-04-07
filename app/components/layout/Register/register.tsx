@@ -7,6 +7,16 @@ export default function RegisterPage() {
   const [form, setForm] = useState<any>({});
   const [loading, setLoading] = useState(false);
 
+  const [open, setOpen] = useState(false);
+
+  const options = [
+    { label: "Select", value: "" },
+    { label: "Farmer", value: "Farmer" },
+    { label: "Buyer", value: "Buyer" },
+    { label: "Manpower Vendor", value: "Vendor" },
+    { label: "Machinery Owner", value: "Business" },
+  ];
+
   // OTP states
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [otp, setOtp] = useState<string[]>([]);
@@ -64,7 +74,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="w-full bg-gray-100">
       {/* HEADER */}
       <div className="bg-green-800 text-center py-10 px-4">
         <Users className="text-white mx-auto mb-2" size={32} />
@@ -80,30 +90,68 @@ export default function RegisterPage() {
       <div className="flex justify-center items-center gap-4 py-6">
         <p className="text-gray-700 text-sm">Select user type</p>
 
-        <select
-          name="user_type"
-          onChange={handleChange}
-          className="bg-yellow-500 px-6 py-2 rounded-full text-sm"
-        >
-          <option value="">Select</option>
-          <option value="Farmer">Farmer</option>
-          <option value="Vendor">Vendor</option>
-          <option value="Business">Business</option>
-        </select>
+        <div className="relative w-48">
+          {/* SELECT BOX */}
+          <div
+            onClick={() => setOpen(!open)}
+            className="bg-yellow-500 px-6 py-2 rounded-full flex justify-between items-center cursor-pointer"
+          >
+            <span className="text-sm font-medium">
+              {form.user_type || "Select"}
+            </span>
+
+            {/* ARROW */}
+            <svg
+              className={`w-4 h-4 transition-transform ${
+                open ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+          {/* DROPDOWN */}
+          {open && (
+            <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-50">
+              {options.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setForm({ ...form, user_type: item.value });
+                    setOpen(false);
+                  }}
+                  className={`px-4 py-3 text-sm cursor-pointer hover:bg-gray-100 ${
+                    form.user_type === item.value
+                      ? "bg-gray-200 font-medium"
+                      : ""
+                  }`}
+                >
+                  {item.label}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* FORM */}
-      <div className="max-w-5xl mx-auto px-4 pb-10">
+      <div className="max-w-6xl mx-auto px-4 pb-10">
         <div className="bg-[#d9d1b8] rounded-2xl px-10 py-8">
           <div className="grid md:grid-cols-2 gap-y-6 gap-x-10">
-
             {/* FULL NAME */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr] gap-4 items-center">
-                <label>Full Name / Business Name *</label>
+              <div className="grid md:grid-cols-[180px_1fr] gap-7 items-center">
+                <label className="whitespace-nowrap">
+                  Full Name / Business Name *
+                </label>
                 <input
                   name="full_name"
                   onChange={handleChange}
+                  placeholder="Enter Full Name / Business Name"
                   className="bg-gray-200 px-4 py-2 rounded-xl"
                 />
               </div>
@@ -111,11 +159,12 @@ export default function RegisterPage() {
 
             {/* MOBILE + OTP */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-4 items-center">
+              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-7 items-center">
                 <label>Mobile Number *</label>
                 <input
                   name="mobile"
                   onChange={handleChange}
+                  placeholder="Enter 10-digit Mobile Number"
                   className="bg-gray-200 px-4 py-2 rounded-xl"
                   disabled={otpVerified}
                 />
@@ -133,9 +182,7 @@ export default function RegisterPage() {
                   <div className="flex gap-2">
                     <input
                       maxLength={6}
-                      onChange={(e) =>
-                        setOtp(e.target.value.split(""))
-                      }
+                      onChange={(e) => setOtp(e.target.value.split(""))}
                       className="bg-gray-200 px-4 py-2 rounded-xl"
                     />
                     <button
@@ -157,51 +204,75 @@ export default function RegisterPage() {
 
             {/* VILLAGE + DISTRICT */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-4">
+              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-7">
                 <label>Village *</label>
-                <input name="village" onChange={handleChange} className="bg-gray-200 px-4 py-2 rounded-xl" />
+                <input
+                  name="village"
+                  onChange={handleChange}
+                  placeholder="Enter Village Name"
+                  className="bg-gray-200 px-4 py-2 rounded-xl"
+                />
 
                 <label>District *</label>
-                <input name="district" onChange={handleChange} className="bg-gray-200 px-4 py-2 rounded-xl" />
+                <input
+                  name="district"
+                  onChange={handleChange}
+                  placeholder="Enter District Name"
+                  className="bg-gray-200 px-4 py-2 rounded-xl"
+                />
               </div>
             </div>
 
             {/* MANDAL + STATE */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-4">
+              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-7">
                 <label>Mandal / Taluk *</label>
-                <input name="mandal" onChange={handleChange} className="bg-gray-200 px-4 py-2 rounded-xl" />
+                <input
+                  name="mandal"
+                  onChange={handleChange}
+                  placeholder="Enter Mandal / Taluk"
+                  className="bg-gray-200 px-4 py-2 rounded-xl"
+                />
 
                 <label>State *</label>
-                <input name="state" onChange={handleChange} className="bg-gray-200 px-4 py-2 rounded-xl" />
+                <input
+                  name="state"
+                  onChange={handleChange}
+                  placeholder="Enter State Name"
+                  className="bg-gray-200 px-4 py-2 rounded-xl"
+                />
               </div>
             </div>
 
             {/* ADDRESS */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr] gap-4 items-start">
+              <div className="grid md:grid-cols-[180px_1fr] gap-7 items-start">
                 <label className="pt-2">Address / Landmark</label>
                 <textarea
                   name="address"
                   onChange={handleChange}
                   className="bg-gray-200 px-4 py-3 rounded-xl h-24"
+                  placeholder="Enter Address / Landmark"
                 />
               </div>
             </div>
 
             {/* LOCATION + PHOTO */}
             <div className="md:col-span-2">
-              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-4 items-center">
+              <div className="grid md:grid-cols-[180px_1fr_180px_1fr] gap-7 items-center">
                 <label>Location</label>
                 <button
                   onClick={getLocation}
                   className="bg-gray-200 py-2 rounded-xl"
                 >
-                  Location
+                  Select Current Location
                 </button>
 
                 <label>Profile Photo</label>
-                <input type="file" className="bg-gray-200 py-2 rounded-xl px-2" />
+                <input
+                  type="file"
+                  className="bg-gray-200 py-2 rounded-xl px-2"
+                />
               </div>
 
               {form.latitude && (

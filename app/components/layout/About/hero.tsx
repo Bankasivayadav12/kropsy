@@ -3,9 +3,9 @@
 
 export default function AboutHero() {
   const images = [
-    "https://images.unsplash.com/photo-1592982537447-7440770cbfc9",
-    "https://images.unsplash.com/photo-1625246333195-78d9c38ad449",
-    "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
+    "/about/i1.jpg",
+    "/about/i3.jpg",
+    "/about/i2.jpg ",
   ];
 
   return (

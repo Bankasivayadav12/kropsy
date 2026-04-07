@@ -11,9 +11,9 @@ export default function WhatWeDo() {
 ];
 
   const images = [
-    "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
-    "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-    "https://images.unsplash.com/photo-1560493676-04071c5f467b",
+    "/about/a1.jpg",
+    "/about/a2.jpg",
+    "/about/a3.jpg",
   ];
 
   return (
@@ -46,13 +46,11 @@ export default function WhatWeDo() {
     <div className="text-center">
       {/* Replace with actual logo */}
       <img
-        src="/logo.png"
+        src="/kropsyicon.svg"
         alt="KROPSY"
         className="w-32 mx-auto mb-4"
       />
-      <h2 className="text-green-800 font-bold text-3xl tracking-wide">
-        KROPSY
-      </h2>
+   
     </div>
   </div>
 
