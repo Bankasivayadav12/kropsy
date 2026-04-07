@@ -1,7 +1,7 @@
 "use client";
 
 import { Smartphone } from "lucide-react";
-
+import Link from "next/link";
 export default function MobileComingSoon() {
   const features = [
     "QR login",
@@ -63,9 +63,11 @@ export default function MobileComingSoon() {
               Register now and stay updated
             </p>
 
-            <button className="bg-yellow-400 text-green-900 px-7 py-3 rounded-full text-sm font-semibold hover:bg-yellow-300 transition shadow-md">
-              Register Today
-            </button>
+            <Link href="/register">
+  <span className="bg-yellow-400 text-green-900 px-7 py-3 rounded-full text-sm font-semibold hover:bg-yellow-300 transition shadow-md cursor-pointer inline-block">
+    Register Today
+  </span>
+</Link>
           </div>
 
         </div>

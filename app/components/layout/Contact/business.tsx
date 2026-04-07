@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Link from "next/link";
 
 export default function SupportPage() {
 
-  // ✅ VARIANTS (FIXED TYPES)
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     show: {
@@ -23,6 +23,13 @@ export default function SupportPage() {
       },
     },
   };
+
+  // ✅ ACTIONS WITH LINKS
+  const actions = [
+    { text: "Register as New User", link: "/register" },
+    { text: "View All Services", link: "/services" },
+    { text: "Learn How It Works", link: "/how-it-works" },
+  ];
 
   return (
     <section className="w-full bg-[#f3f3f3]">
@@ -49,17 +56,15 @@ export default function SupportPage() {
 
             <div className="space-y-4 text-sm md:text-base">
               <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-700">Monday - Friday</span>
-                <span className="text-gray-800">9:00 AM - 6:00 PM</span>
+                <span>Monday - Friday</span>
+                <span>9:00 AM - 6:00 PM</span>
               </div>
-
               <div className="flex justify-between border-b pb-2">
-                <span className="text-gray-700">Saturday</span>
-                <span className="text-gray-800">9:00 AM - 2:00 PM</span>
+                <span>Saturday</span>
+                <span>9:00 AM - 2:00 PM</span>
               </div>
-
               <div className="flex justify-between">
-                <span className="text-gray-700">Sunday</span>
+                <span>Sunday</span>
                 <span className="text-red-500 font-medium">Closed</span>
               </div>
             </div>
@@ -76,19 +81,16 @@ export default function SupportPage() {
             </h2>
 
             <div className="flex flex-col gap-4">
-              {[
-                "Register as New User",
-                "View All Services",
-                "Learn How It Works",
-              ].map((text, i) => (
-                <motion.button
-                  key={i}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-green-800 text-white py-3 rounded-lg text-sm md:text-base shadow-md hover:bg-green-700 transition"
-                >
-                  {text}
-                </motion.button>
+              {actions.map((item, i) => (
+                <Link href={item.link} key={i}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-green-800 text-white py-3 rounded-lg text-sm md:text-base shadow-md hover:bg-green-700 transition text-center cursor-pointer"
+                  >
+                    {item.text}
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -120,15 +122,15 @@ export default function SupportPage() {
           {[
             {
               q: "How do I register with KROPSY?",
-              a: "You can register through our website registration form or contact our support team for assisted registration.",
+              a: "You can register through our website registration form or contact our support team.",
             },
             {
               q: "What is a PVP card?",
-              a: "The PVP card is your digital identity within the KROPSY ecosystem with QR-based login.",
+              a: "The PVP card is your digital identity with QR-based login.",
             },
             {
               q: "When will the mobile app be available?",
-              a: "The app is in development and will be launched soon. Register to stay updated.",
+              a: "The app is in development and will be launched soon.",
             },
           ].map((item, i) => (
             <motion.div

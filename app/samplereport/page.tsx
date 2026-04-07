@@ -6,15 +6,14 @@ import { Users } from "lucide-react";
 export default function RegisterPage() {
   const [form, setForm] = useState<any>({});
   const [loading, setLoading] = useState(false);
-
   const [open, setOpen] = useState(false);
 
   const options = [
     { label: "Select", value: "" },
     { label: "Farmer", value: "Farmer" },
     { label: "Buyer", value: "Buyer" },
-    { label: "Manpower Vendor", value: "Manpower Vendor" },
-    { label: "Machinery Owner", value: "Machinery Owner" },
+    { label: "Manpower Vendor", value: "Vendor" },
+    { label: "Machinery Owner", value: "Business" },
   ];
 
   // OTP states
@@ -64,7 +63,7 @@ export default function RegisterPage() {
   const handleSubmit = async () => {
     setLoading(true);
 
-    await fetch("/api/users", {
+    await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(form),
     });

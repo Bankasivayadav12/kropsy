@@ -47,26 +47,28 @@ export default function WhatWeDo() {
 
       {/* SECTION 1 */}
       <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="text-center max-w-3xl mx-auto mb-10 sm:mb-12"
-      >
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-800 mb-4">
-          What We Do
-        </h2>
+  variants={fadeUp}
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true }}
+  className="text-center max-w-5xl mx-auto mb-10 sm:mb-12"
+>
+  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-800 mb-4">
+    What We Do
+  </h2>
 
-        <p className="text-green-700 text-xs sm:text-sm md:text-base mb-2">
-          KROPSY is a digital smart farming platform designed to support agriculture through technology.
-        </p>
-        <p className="text-green-700 text-xs sm:text-sm md:text-base mb-2">
-          The platform brings together crop monitoring, soil intelligence, tools and manpower services, crop selling, and crop buying into one system.
-        </p>
-        <p className="text-green-700 text-xs sm:text-sm md:text-base">
-          KROPSY simplifies farming operations and improves decision-making.
-        </p>
-      </motion.div>
+  <p className="text-green-700 text-sm md:text-base leading-relaxed mb-2">
+    KROPSY is a digital smart farming platform designed to support agriculture through technology.
+  </p>
+
+  <p className="text-green-700 text-sm md:text-base leading-relaxed mb-2">
+    The platform brings together crop monitoring, soil intelligence, tools and manpower services, crop selling, and crop buying into one system.
+  </p>
+
+  <p className="text-green-700 text-sm md:text-base leading-relaxed">
+    KROPSY simplifies farming operations and improves decision-making.
+  </p>
+</motion.div>
 
       {/* SECTION 2 */}
       <motion.div

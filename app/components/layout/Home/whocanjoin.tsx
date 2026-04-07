@@ -32,7 +32,23 @@ export default function WhoCanJoin() {
         {users.map((item, index) => (
           <div
             key={index}
-            className="bg-[#E7E1C8] px-6 py-5 rounded-xl text-green-800 text-sm text-center min-w-37.5 shadow-sm"
+            className="
+              bg-[#E7E1C8]
+              px-6 py-5
+              rounded-xl
+              text-green-800
+              text-sm
+              text-center
+              min-w-[150px]
+              shadow-sm
+              
+              border border-transparent
+              hover:border-green-800
+              
+              transition-all duration-300
+              hover:-translate-y-1 hover:shadow-md
+              cursor-pointer
+            "
           >
             {item}
           </div>

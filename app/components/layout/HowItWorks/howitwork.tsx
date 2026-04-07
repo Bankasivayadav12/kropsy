@@ -148,7 +148,7 @@ export default function HowItWorksPage() {
         />
 
         <div className="relative z-10 mx-auto max-w-2xl">
-          <span className="mb-5 inline-block rounded-full border border-green-600 bg-green-800/60 px-4 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-green-300 uppercase backdrop-blur-sm">
+          <span className="mb-5 inline-block rounded-full border border-green-600 bg-yellow-800 px-4 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-green-300 uppercase backdrop-blur-sm">
             Platform Overview
           </span>
 
@@ -165,20 +165,7 @@ export default function HowItWorksPage() {
             workflow connecting farmers, labourers, vendors, and tools.
           </p>
 
-          {/* Step pills */}
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {steps.map((s) => (
-              <span
-                key={s.id}
-                className="flex items-center gap-1.5 rounded-full bg-green-800/60 px-3 py-1 text-[11px] text-green-300 backdrop-blur-sm border border-green-700/40"
-              >
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-green-700 text-[9px] font-bold text-white">
-                  {s.id}
-                </span>
-                {s.title}
-              </span>
-            ))}
-          </div>
+         
         </div>
       </div>
 
@@ -225,15 +212,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* ── BOTTOM CTA STRIP ── */}
-      <div className="border-t border-green-100 bg-white px-6 py-10 text-center">
-        <p className="mb-4 text-sm text-green-700">
-          Ready to join the KROPSY ecosystem?
-        </p>
-        <button className="rounded-full bg-green-800 px-8 py-3 text-sm font-semibold text-white shadow-md shadow-green-900/20 transition-all duration-200 hover:bg-green-700 hover:shadow-lg hover:shadow-green-900/30 active:scale-95">
-          Get Started Free
-        </button>
-      </div>
+      
 
     </div>
   );

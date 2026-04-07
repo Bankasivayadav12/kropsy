@@ -3,25 +3,11 @@ import User from "../../../models/register";
 
 export async function POST(req) {
   try {
-    const { name, email, password } = await req.json();
+    const body = await req.json();
 
     await connectDB();
 
-    // check existing user
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return Response.json({
-        success: false,
-        message: "User already exists",
-      });
-    }
-
-    // create user
-    const user = await User.create({
-      name,
-      email,
-      password,
-    });
+    const user = await User.create(body);
 
     return Response.json({
       success: true,

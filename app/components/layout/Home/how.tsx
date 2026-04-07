@@ -2,7 +2,7 @@
 
 
 import { motion, Variants } from "framer-motion";
-
+import Link from "next/link";
 type Step = {
   id: number;
   label: string;
@@ -175,13 +175,12 @@ export default function HowWorksPage() {
         transition={{ delay: 0.8, duration: 0.6 }}
         className="flex flex-wrap justify-center gap-4 mt-12"
       >
-        <button className="bg-green-900 text-white text-sm px-6 py-3 rounded-full shadow-md hover:bg-green-800 hover:scale-105 transition-all duration-300">
-          Explore Features
-        </button>
+        <Link href="/how-it-works">
+  <span className="bg-green-900 text-white text-sm px-6 py-3 rounded-full shadow-md hover:bg-green-800 hover:scale-105 transition-all duration-300 cursor-pointer inline-block">
+    Learn More
+  </span>
+</Link>
 
-        <button className="text-green-900 border border-green-400 text-sm px-6 py-3 rounded-full hover:bg-green-100 hover:scale-105 transition-all duration-300">
-          Learn More
-        </button>
       </motion.div>
 
     </section>
