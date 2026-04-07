@@ -30,52 +30,52 @@ export default function WhatIsSection() {
       </div>
 
       {/* 🔶 Content */}
-      <div className="mt-14 grid md:grid-cols-2 gap-10 items-center">
+      <div className="mt-14 grid md:grid-cols-2 gap-10 items-stretch">
 
-        {/* 🟫 Left Card Animation */}
-        <motion.div
-          initial={{ x: -150, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="bg-[#ded6c3] rounded-3xl p-8 md:p-10 shadow-sm"
-        >
-          <h3 className="text-xl md:text-2xl font-semibold text-green-900 mb-6 text-center">
-            KROPSY helps in:
-          </h3>
+  {/* 🟫 LEFT CARD */}
+  <motion.div
+    initial={{ x: -150, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.4 }}
+    viewport={{ once: true }}
+    className="bg-[#ded6c3] rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-center h-full"
+  >
+    <h3 className="text-xl md:text-2xl font-semibold text-green-900 mb-6 text-center">
+      KROPSY helps in:
+    </h3>
 
-          <ul className="space-y-5">
-            {features.map((item, index) => (
-              <li key={index} className="flex items-center gap-3">
-                <CheckCircle className="text-green-700 w-5 h-5" />
-                <span className="text-gray-800 text-base md:text-lg">
-                  {item}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+    <ul className="space-y-5">
+      {features.map((item, index) => (
+        <li key={index} className="flex items-center gap-3">
+          <CheckCircle className="text-green-700 w-5 h-5" />
+          <span className="text-gray-800 text-base md:text-lg">
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </motion.div>
 
-        {/* 🖼️ Right Image Animation */}
-        <motion.div
-          initial={{ x: 150, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="w-full"
-        >
-          <div className="rounded-3xl overflow-hidden">
-            <Image
-              src="/what1.jpg"
-              alt="Smart Farming"
-              width={600}
-              height={400}
-              className="w-full h-full object-cover rounded-3xl"
-            />
-          </div>
-        </motion.div>
+  {/* 🖼️ RIGHT IMAGE */}
+  <motion.div
+    initial={{ x: 150, opacity: 0 }}
+    whileInView={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.4 }}
+    viewport={{ once: true }}
+    className="w-full h-full"
+  >
+    <div className="rounded-3xl overflow-hidden h-full">
+      <Image
+        src="/what1.jpg"
+        alt="Smart Farming"
+        width={600}
+        height={900}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </motion.div>
 
-      </div>
+</div>
     </section>
   );
 }

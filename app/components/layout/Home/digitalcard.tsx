@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 export default function DigitalCardPage() {
   const features = [
@@ -10,32 +11,33 @@ export default function DigitalCardPage() {
 
   return (
     <div className="bg-green-900  flex items-center justify-center px-4 py-6">
-      <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
-        
+      <div className="max-w-6xl w-full grid md:grid-cols-2 gap-14 items-center">
         {/* LEFT CARD */}
-         <div className="w-full max-w-xl bg-linear-to-br from-[#3E7C59] to-[#4E8A66] rounded-[30px] p-8 shadow-lg border border-white/20">
-        
-        {/* QR ICON */}
-        <div className="text-yellow-400 text-5xl mb-6">
-          {/* You can replace with image */}
-          ⌗
+        <div className="w-full max-w-xl bg-linear-to-br from-[#3E7C59] to-[#4E8A66] rounded-[30px] p-8 shadow-lg border border-white/20">
+          {/* QR ICON */}
+          <div className="mb-6">
+            <Image
+              src="/home/qricon.png" // your image path
+              alt="QR Icon"
+              width={60}
+              height={60}
+              className="w-14 h-14"
+            />
+          </div>
+
+          {/* TITLE */}
+          <h2 className="text-white text-3xl font-bold mb-2">
+            Digital PVP Card
+          </h2>
+
+          {/* ID */}
+          <p className="text-green-100 text-lg mb-8">PVP ID: KPY-F/V/K-26031</p>
+
+          {/* BUTTON */}
+          <button className="w-full bg-[#D4AF2A] text-green-900 py-3 rounded-full text-lg font-medium hover:bg-yellow-400 transition">
+            QR Code Login Enabled
+          </button>
         </div>
-
-        {/* TITLE */}
-        <h2 className="text-white text-3xl font-bold mb-2">
-          Digital PVP Card
-        </h2>
-
-        {/* ID */}
-        <p className="text-green-100 text-lg mb-8">
-          PVP ID: KPY-F/V/K-26031
-        </p>
-
-        {/* BUTTON */}
-        <button className="w-full bg-[#D4AF2A] text-green-900 py-3 rounded-full text-lg font-medium hover:bg-yellow-400 transition">
-          QR Code Login Enabled
-        </button>
-      </div>
 
         {/* RIGHT CONTENT */}
         <div>
@@ -44,7 +46,8 @@ export default function DigitalCardPage() {
           </h2>
 
           <p className="text-green-200 text-sm mb-5">
-            Every registered user receives a KROPSY PVP card with QR code support.
+            Every registered user receives a KROPSY PVP card with QR code
+            support.
           </p>
 
           <p className="text-yellow-400 font-semibold mb-3">
@@ -54,7 +57,10 @@ export default function DigitalCardPage() {
           {/* FEATURES */}
           <ul className="space-y-3 mb-5">
             {features.map((item, index) => (
-              <li key={index} className="flex items-start gap-2 text-green-200 text-sm">
+              <li
+                key={index}
+                className="flex items-start gap-2 text-green-200 text-sm"
+              >
                 <span className="text-yellow-400 mt-0.5">✔</span>
                 <span>{item}</span>
               </li>

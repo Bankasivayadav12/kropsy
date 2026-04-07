@@ -1,5 +1,7 @@
 "use client";
 
+import { Smartphone } from "lucide-react";
+
 export default function MobileComingSoon() {
   const features = [
     "QR login",
@@ -12,10 +14,12 @@ export default function MobileComingSoon() {
 
   return (
     <div className="bg-green-900 min-h-screen flex items-center justify-center px-4 py-16">
-      <div className="max-w-6xl w-full text-center">
-        
+      <div className="max-w-5xl w-full text-center">
+
         {/* ICON */}
-        <div className="text-white text-4xl mb-4">📱</div>
+        <div className="flex justify-center mb-4">
+          <Smartphone className="text-white w-10 h-10 stroke-[2.5]" />
+        </div>
 
         {/* TITLE */}
         <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">
@@ -23,49 +27,47 @@ export default function MobileComingSoon() {
         </h1>
 
         {/* DESCRIPTION */}
-        <p className="text-green-200 max-w-2xl mx-auto text-sm md:text-base mb-12">
+        <p className="text-green-200 max-w-2xl mx-auto text-sm md:text-base mb-14 leading-relaxed">
           The KROPSY mobile app will be launching soon to provide farmers and service providers with easy digital access to all platform services.
         </p>
 
         {/* CONTENT */}
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          
+        <div className="grid md:grid-cols-2 gap-10 items-center justify-center">
+
           {/* LEFT CARD */}
-            {/* CARD */}
-      <div className="w-full max-w-2xl bg-linear-to-br from-[#3E7C59] to-[#4E8A66] rounded-[40px] p-10 border border-white/20 shadow-lg">
-        
-        {/* TITLE */}
-        <h2 className="text-yellow-400 text-2xl md:text-3xl font-semibold text-center mb-8">
-          Planned app features:
-        </h2>
+          <div className="mx-auto w-full max-w-md bg-gradient-to-br from-[#3E7C59] to-[#4E8A66] rounded-[28px] p-8 border border-white/20 shadow-lg text-left">
+            
+            <h2 className="text-yellow-400 text-lg font-semibold text-center mb-5">
+              Planned app features:
+            </h2>
 
-        {/* LIST */}
-        <ul className="space-y-5">
-          {features.map((item, index) => (
-            <li key={index} className="flex items-center gap-4 text-white text-lg">
-              
-              {/* TICK ICON */}
-              <div className="w-6 h-6 flex items-center justify-center border-2 border-yellow-400 rounded-full text-yellow-400 text-sm">
-                ✓
-              </div>
+            <ul className="space-y-3">
+              {features.map((item, index) => (
+                <li key={index} className="flex items-center gap-3 text-white text-sm">
+                  
+                  {/* TICK */}
+                  <div className="w-5 h-5 flex items-center justify-center border border-yellow-400 rounded-full text-yellow-400 text-xs">
+                    ✓
+                  </div>
 
-              {/* TEXT */}
-              <span className="tracking-wide">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* RIGHT SIDE */}
-          <div className="text-center md:text-left">
-            <p className="text-yellow-400 mb-4 text-lg font-medium">
+          <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left">
+            
+            <p className="text-yellow-400 mb-4 text-base font-medium">
               Register now and stay updated
             </p>
 
-            <button className="bg-yellow-400 text-green-900 px-8 py-3 rounded-full text-sm font-semibold hover:bg-yellow-300 transition">
+            <button className="bg-yellow-400 text-green-900 px-7 py-3 rounded-full text-sm font-semibold hover:bg-yellow-300 transition shadow-md">
               Register Today
             </button>
           </div>
+
         </div>
       </div>
     </div>
