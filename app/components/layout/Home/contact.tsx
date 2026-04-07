@@ -38,7 +38,7 @@ export default function RegisterContactPage() {
           <div className="bg-[#E7E1C8] px-10 py-6 rounded-2xl min-w-70 shadow-sm">
             <p className="text-green-800 font-medium mb-2">Mobile</p>
             <p className="text-green-700 text-sm">
-              +91 81 84 94 50 39
+              +91 8184945039
             </p>
           </div>
 

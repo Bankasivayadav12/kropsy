@@ -70,7 +70,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-green-800" />
-              <span>+91 94 93 11 58 13</span>
+              <span>+91 9493115813</span>
             </div>
 
             <div className="flex items-center gap-3">
