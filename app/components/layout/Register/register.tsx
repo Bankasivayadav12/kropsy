@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect, useRef  } from "react";
 import { Users } from "lucide-react";
+
+
 
 export default function RegisterPage() {
   const [form, setForm] = useState<any>({});
@@ -26,6 +28,26 @@ export default function RegisterPage() {
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+
+const dropdownRef = useRef<any>(null);
+
+useEffect(() => {
+  const handleClickOutside = (event: any) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   // 🔥 Generate OTP
   const generateOtp = () => {
@@ -87,56 +109,57 @@ export default function RegisterPage() {
       </div>
 
       {/* USER TYPE */}
-      <div className="flex justify-center items-center gap-4 py-6">
-        <p className="text-gray-700 text-sm">Select user type</p>
+      {/* USER TYPE */}
+<div className="flex justify-center items-center gap-4 py-6">
+  <p className="text-gray-700 text-sm">Select user type</p>
 
-        <div className="relative w-48">
-          {/* SELECT BOX */}
+ <div ref={dropdownRef} className="relative w-48">
+    {/* SELECT BOX */}
+    <div
+      onClick={() => setOpen(!open)}
+      className="bg-yellow-500 px-6 py-2 rounded-full flex justify-between items-center cursor-pointer"
+    >
+      <span className="text-sm font-medium">
+        {form.user_type || "Select"}
+      </span>
+
+      {/* ARROW */}
+      <svg
+        className={`w-4 h-4 transition-transform ${
+          open ? "rotate-180" : ""
+        }`}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+
+    {/* DROPDOWN */}
+    {open && (
+      <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-50">
+        {options.map((item, index) => (
           <div
-            onClick={() => setOpen(!open)}
-            className="bg-yellow-500 px-6 py-2 rounded-full flex justify-between items-center cursor-pointer"
+            key={index}
+            onClick={() => {
+              setForm({ ...form, user_type: item.value });
+              setOpen(false);
+            }}
+            className={`px-4 py-3 text-sm cursor-pointer hover:bg-gray-100 ${
+              form.user_type === item.value
+                ? "bg-gray-200 font-medium"
+                : ""
+            }`}
           >
-            <span className="text-sm font-medium">
-              {form.user_type || "Select"}
-            </span>
-
-            {/* ARROW */}
-            <svg
-              className={`w-4 h-4 transition-transform ${
-                open ? "rotate-180" : ""
-              }`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M19 9l-7 7-7-7" />
-            </svg>
+            {item.label}
           </div>
-
-          {/* DROPDOWN */}
-          {open && (
-            <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-50">
-              {options.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setForm({ ...form, user_type: item.value });
-                    setOpen(false);
-                  }}
-                  className={`px-4 py-3 text-sm cursor-pointer hover:bg-gray-100 ${
-                    form.user_type === item.value
-                      ? "bg-gray-200 font-medium"
-                      : ""
-                  }`}
-                >
-                  {item.label}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        ))}
       </div>
+    )}
+  </div>
+</div>
 
       {/* FORM */}
       <div className="max-w-6xl mx-auto px-4 pb-10">

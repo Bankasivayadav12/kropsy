@@ -66,7 +66,7 @@ export default function RegisterContactPage() {
             ">
               <p className="text-green-800 font-medium mb-2">Mobile</p>
               <p className="text-green-700 text-sm hover:underline">
-                +91 8184945039
+                +91 9493115813
               </p>
             </div>
           </a>

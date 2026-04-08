@@ -77,7 +77,7 @@ export default function ContactPage() {
               </p>
 
               <p className="text-xl font-bold text-green-900">
-                +91 8184945039
+                +91 9493115813
               </p>
 
               <p className="text-xs text-gray-500 mt-1">

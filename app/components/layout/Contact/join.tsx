@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ReadyToJoin() {
   return (
     <section className="w-full bg-[#145c2c] py-6 md:py-10 text-center">
@@ -16,9 +18,11 @@ export default function ReadyToJoin() {
         </p>
 
         {/* Button */}
-        <button className="bg-[#d4a62a] hover:bg-[#c29522] text-black px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition">
-          Register Now
-        </button>
+       <Link href="/register">
+      <button className="bg-[#d4a62a] hover:bg-[#c29522] text-black px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium transition">
+        Register Now
+      </button>
+    </Link>
 
       </div>
     </section>
