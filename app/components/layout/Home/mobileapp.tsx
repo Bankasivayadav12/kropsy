@@ -1,8 +1,9 @@
 "use client";
-
+import { useState } from "react";
 import { Smartphone } from "lucide-react";
 import Link from "next/link";
 export default function MobileComingSoon() {
+  const [activePoints, setActivePoints] = useState<{ [key: number]: boolean }>({});
   const features = [
     "QR login",
     "Crop monitoring dashboard",
@@ -11,6 +12,13 @@ export default function MobileComingSoon() {
     "Crop marketplace access",
     "Notifications and alerts",
   ];
+
+  const handleHover = (index: number) => {
+  setActivePoints((prev) => ({
+    ...prev,
+    [index]: true,
+  }));
+};
 
   return (
     <div className="bg-green-900 min-h-screen flex items-center justify-center px-4 py-16">
@@ -42,18 +50,48 @@ export default function MobileComingSoon() {
             </h2>
 
             <ul className="space-y-3">
-              {features.map((item, index) => (
-                <li key={index} className="flex items-center gap-3 text-white text-sm">
-                  
-                  {/* TICK */}
-                  <div className="w-5 h-5 flex items-center justify-center border border-yellow-400 rounded-full text-yellow-400 text-xs">
-                    ✓
-                  </div>
+  {features.map((item, index) => {
+    const isActive = activePoints[index];
 
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+    return (
+      <li
+        key={index}
+        onMouseEnter={() => handleHover(index)}
+        className="flex items-center gap-3 text-sm cursor-pointer"
+      >
+        {/* ICON */}
+        <div
+          className={`
+            w-5 h-5 flex items-center justify-center rounded-full text-xs
+            transition-all duration-300
+
+            ${
+              isActive
+                ? "bg-yellow-400 text-green-900 border-yellow-400"
+                : "border border-yellow-400 text-yellow-400"
+            }
+          `}
+        >
+          ✓
+        </div>
+
+        {/* TEXT */}
+        <span
+          className={`
+            transition-colors duration-300
+            ${
+              isActive
+                ? "text-white font-medium"
+                : "text-white/90"
+            }
+          `}
+        >
+          {item}
+        </span>
+      </li>
+    );
+  })}
+</ul>
           </div>
 
           {/* RIGHT SIDE */}

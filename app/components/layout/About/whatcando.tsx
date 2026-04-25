@@ -2,8 +2,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-
+import { useState } from "react";
 export default function WhatWeDo() {
+  const [activePoints, setActivePoints] = useState<{ [key: number]: boolean }>({});
+
   const items = [
     "Farmer-focused platform",
     "AI-enabled agriculture support",
@@ -17,6 +19,13 @@ export default function WhatWeDo() {
     "/about/a2.jpg",
     "/about/a3.jpg",
   ];
+
+  const handleHover = (index: number) => {
+  setActivePoints((prev) => ({
+    ...prev,
+    [index]: true,
+  }));
+};
 
   // ✅ FIXED VARIANTS (TYPED)
 
@@ -140,22 +149,46 @@ export default function WhatWeDo() {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {items.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              className="bg-[#E7E1C8] rounded-2xl px-6 py-5 flex items-center gap-4 shadow-sm"
-            >
-              <div className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-green-800 text-green-800">
-                ✓
-              </div>
+       {items.map((item, index) => {
+  const isActive = activePoints[index];
 
-              <p className="text-green-800 text-sm md:text-base">
-                {item}
-              </p>
-            </motion.div>
-          ))}
+  return (
+    <motion.div
+      key={index}
+      variants={fadeUp}
+      onMouseEnter={() => handleHover(index)}
+      className="
+        bg-[#E7E1C8] rounded-2xl px-6 py-5 flex items-center gap-4 shadow-sm cursor-pointer
+      "
+    >
+      {/* ICON */}
+      <div
+        className={`
+          w-6 h-6 flex items-center justify-center rounded-full text-sm
+          transition-all duration-300
+
+          ${
+            isActive
+              ? "bg-green-800 text-white border-green-800"
+              : "border-2 border-green-800 text-green-800"
+          }
+        `}
+      >
+        ✓
+      </div>
+
+      {/* TEXT */}
+      <p
+        className={`
+          text-sm md:text-base transition-colors duration-300
+          ${isActive ? "text-green-900 font-medium" : "text-green-800"}
+        `}
+      >
+        {item}
+      </p>
+    </motion.div>
+  );
+})}
         </motion.div>
       </div>
 

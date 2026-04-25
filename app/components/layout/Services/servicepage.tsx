@@ -1,7 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { Leaf, FlaskConical, Tractor,ShoppingCart, Store, Drone, Key } from "lucide-react";
+import {
+  Leaf,
+  FlaskConical,
+  Tractor,
+  ShoppingCart,
+  Store,
+  Drone,
+  Key,
+} from "lucide-react";
+import { useState } from "react";
 
 const services = [
   {
@@ -18,8 +27,7 @@ const services = [
       "Yield estimation",
       "Image-based diagnosis",
     ],
-    image:
-      "/services/service1.jpg",
+    image: "/services/service1.jpg",
   },
   {
     title: "Soil Intelligence",
@@ -33,8 +41,7 @@ const services = [
       "Fertilizer suggestions",
       "Crop suitability guidance",
     ],
-    image:
-     "/services/service2.jpg",
+    image: "/services/service2.jpg",
   },
   {
     title: "Lease Tools & Manpower Supply",
@@ -47,8 +54,7 @@ const services = [
       "Work tracking through QR",
       "Ratings and payments",
     ],
-    image:
-      "/services/service3.jpg",
+    image: "/services/service3.jpg",
   },
   {
     title: "Sell Crops",
@@ -62,8 +68,7 @@ const services = [
       "Vendor market display",
       "Direct selling",
     ],
-    image:
-      "/services/service4.jpg",
+    image: "/services/service4.jpg",
   },
   {
     title: "Buy Crops",
@@ -76,8 +81,7 @@ const services = [
       "Direct purchase after approval",
       "Payment finalization",
     ],
-    image:
-      "/services/service5.jpg",
+    image: "/services/service5.jpg",
   },
   {
     title: "Drone Monitoring",
@@ -89,8 +93,7 @@ const services = [
       "Area-based analysis",
       "Commercial farm support",
     ],
-    image:
-      "/services/service6.jpg",
+    image: "/services/service6.jpg",
   },
   {
     title: "Lease KROPSY Land",
@@ -105,16 +108,24 @@ const services = [
       "Inventory support",
       "Crop advisory",
     ],
-    image:
-     "/services/service7.jpg", // 👈 add your local image here
+    image: "/services/service7.jpg",
   },
 ];
 
 export default function ServicesPage() {
+  const [activePoints, setActivePoints] = useState<{ [key: string]: boolean }>({});
+
+  const handleHover = (cardIndex: number, pointIndex: number) => {
+    const key = `${cardIndex}-${pointIndex}`;
+    setActivePoints((prev) => ({
+      ...prev,
+      [key]: true,
+    }));
+  };
+
   return (
-    <div className="bg-gray-100 ">
-      
-      {/* 🔰 Header */}
+    <div className="bg-gray-100">
+      {/* HEADER */}
       <div className="bg-green-800 text-white text-center py-8 px-4">
         <h1 className="text-2xl md:text-3xl font-bold">
           KROPSY Services
@@ -125,7 +136,7 @@ export default function ServicesPage() {
         </p>
       </div>
 
-      {/* 🔽 Services */}
+      {/* SERVICES */}
       <div className="mt-10 space-y-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         {services.map((service, index) => {
           const Icon = service.icon;
@@ -133,18 +144,17 @@ export default function ServicesPage() {
           return (
             <div
               key={index}
-              className="bg-[#e9e1cf] rounded-2xl p-6 md:p-8 
-              transition-all duration-300 
-              hover:shadow-xl hover:scale-[1.01]"
+              className="bg-[#e9e1cf] rounded-2xl p-6 md:p-8 hover:shadow-xl transition"
             >
               <div className="grid md:grid-cols-2 gap-6 items-center">
                 
-                {/* 🟢 Left Content */}
+                {/* LEFT */}
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="bg-green-700 text-white p-2 rounded-full">
                       <Icon size={18} />
                     </div>
+
                     <h2 className="text-lg md:text-xl font-semibold text-green-900">
                       {service.title}
                     </h2>
@@ -158,28 +168,63 @@ export default function ServicesPage() {
                     Features:
                   </h3>
 
-                  <ul className="space-y-1 text-sm text-gray-700">
-                    {service.features.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* ✅ FEATURES WITH ACTIVE STATE */}
+                  <ul className="space-y-3 text-sm">
+  {service.features.map((item, i) => {
+    const key = `${index}-${i}`;
+    const isActive = activePoints[key];
+
+    return (
+      <li
+        key={i}
+        onMouseEnter={() => handleHover(index, i)}
+        className="flex items-center gap-3 cursor-pointer"
+      >
+        {/* ICON */}
+        <div
+          className={`
+            w-5 h-5 flex items-center justify-center rounded-full text-xs
+            transition-all duration-300
+
+            ${
+              isActive
+                ? "bg-green-800 text-white"
+                : "border-2 border-green-800 text-green-800"
+            }
+          `}
+        >
+          ✓
+        </div>
+
+        {/* TEXT */}
+        <span
+          className={`
+            transition-all duration-300
+            ${
+              isActive
+                ? "text-green-900 font-medium"
+                : "text-green-800"
+            }
+          `}
+        >
+          {item}
+        </span>
+      </li>
+    );
+  })}
+</ul>
                 </div>
 
-                {/* 🖼 Right Image */}
+                {/* RIGHT IMAGE */}
                 <div className="overflow-hidden rounded-xl">
                   <Image
                     src={service.image}
                     alt={service.title}
                     width={600}
                     height={400}
-                    className="w-full h-[200px] md:h-[250px] object-cover 
-                    transition-transform duration-500 hover:scale-105"
+                    className="w-full h-[200px] md:h-[250px] object-cover hover:scale-105 transition"
                   />
                 </div>
-
               </div>
             </div>
           );

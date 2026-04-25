@@ -3,8 +3,10 @@
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function WhatIsSection() {
+  const [activePoints, setActivePoints] = useState<{ [key: number]: boolean }>({});
   const features = [
     "Crop monitoring",
     "Soil Testing",
@@ -13,6 +15,12 @@ export default function WhatIsSection() {
     "Digital identity through PVP QR cards",
   ];
 
+  const handleHover = (index: number) => {
+  setActivePoints((prev) => ({
+    ...prev,
+    [index]: true,
+  }));
+}; 
   return (
     <section className="w-full bg-[#f5f5f5] py-16 px-4 md:px-10 lg:px-20">
       
@@ -45,15 +53,47 @@ export default function WhatIsSection() {
     </h3>
 
     <ul className="space-y-5">
-      {features.map((item, index) => (
-        <li key={index} className="flex items-center gap-3">
-          <CheckCircle className="text-green-700 w-5 h-5" />
-          <span className="text-gray-800 text-base md:text-lg">
-            {item}
-          </span>
-        </li>
-      ))}
-    </ul>
+  {features.map((item, index) => {
+    const isActive = activePoints[index];
+
+    return (
+      <li
+        key={index}
+        onMouseEnter={() => handleHover(index)}
+        className="flex items-center gap-3 cursor-pointer"
+      >
+        {/* ICON */}
+        <div
+          className={`
+            w-5 h-5 flex items-center justify-center rounded-full transition-all duration-300
+
+            ${
+              isActive
+                ? "bg-green-800 text-white"
+                : "text-green-700"
+            }
+          `}
+        >
+          <CheckCircle className="w-5 h-5" />
+        </div>
+
+        {/* TEXT */}
+        <span
+          className={`
+            text-base md:text-lg transition-colors duration-300
+            ${
+              isActive
+                ? "text-green-900 font-medium"
+                : "text-gray-800"
+            }
+          `}
+        >
+          {item}
+        </span>
+      </li>
+    );
+  })}
+</ul>
   </motion.div>
 
   {/* 🖼️ RIGHT IMAGE */}

@@ -1,8 +1,20 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useState } from "react";
 
 export default function ChoosePage() {
+
+  const [activePoints, setActivePoints] = useState<{ [key: string]: boolean }>({});
+
+const handlePointHover = (side: "left" | "right", index: number) => {
+  const key = `${side}-${index}`;
+  setActivePoints((prev) => ({
+    ...prev,
+    [key]: true,
+  }));
+};
+
   const features = [
     "Smart farming support in one place",
     "Real-time crop monitoring",
@@ -81,35 +93,48 @@ export default function ChoosePage() {
           viewport={{ once: true, margin: "-100px" }}
           className="flex flex-col gap-4"
         >
-          {leftFeatures.map((text, index) => (
-            <motion.div
-              key={index}
-              variants={leftItem}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              whileHover={{
-                y: -6,
-                scale: 1.03,
-                boxShadow: "0px 10px 25px rgba(0,0,0,0.1)",
-              }}
-              className="group flex items-center gap-3 bg-[#E7E1C8] px-4 py-3 rounded-xl cursor-pointer"
-            >
-              <motion.div
-                whileHover={{
-                  rotate: -15,
-                  scale: 0.8,
-                  backgroundColor: "#15803d",
-                  color: "#fff",
-                }}
-                className="w-5 h-5 flex items-center justify-center border border-green-700 rounded-full text-green-700 text-xs"
-              >
-                ✓
-              </motion.div>
+        {leftFeatures.map((text, index) => {
+  const key = `left-${index}`;
+  const isActive = activePoints[key];
 
-              <p className="text-green-800 text-sm">{text}</p>
-            </motion.div>
-          ))}
+  return (
+    <motion.div
+      key={index}
+      variants={leftItem}
+      onMouseEnter={() => handlePointHover("left", index)}
+      className="
+        flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer
+        bg-[#E7E1C8]
+      "
+    >
+      {/* ICON */}
+      <div
+        className={`
+          w-5 h-5 flex items-center justify-center rounded-full text-xs
+          transition-all duration-300
+
+          ${
+            isActive
+              ? "bg-green-800 text-white border-green-800"
+              : "border border-green-700 text-green-700"
+          }
+        `}
+      >
+        ✓
+      </div>
+
+      {/* TEXT */}
+      <p
+        className={`
+          text-sm transition-colors duration-300
+          ${isActive ? "text-green-900 font-medium" : "text-green-800"}
+        `}
+      >
+        {text}
+      </p>
+    </motion.div>
+  );
+})}
         </motion.div>
 
         {/* RIGHT SIDE */}
@@ -120,35 +145,48 @@ export default function ChoosePage() {
           viewport={{ once: true, margin: "-100px" }}
           className="flex flex-col gap-4"
         >
-          {rightFeatures.map((text, index) => (
-            <motion.div
-              key={index}
-              variants={rightItem}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              whileHover={{
-                y: -6,
-                scale: 1.03,
-                boxShadow: "0px 10px 25px rgba(0,0,0,0.1)",
-              }}
-              className="group flex items-center gap-3 bg-[#E7E1C8] px-4 py-3 rounded-xl cursor-pointer"
-            >
-              <motion.div
-                whileHover={{
-                  rotate: 15,
-                  scale: 0.8,
-                  backgroundColor: "#15803d",
-                  color: "#fff",
-                }}
-                className="w-5 h-5 flex items-center justify-center border border-green-700 rounded-full text-green-700 text-xs"
-              >
-                ✓
-              </motion.div>
+       {rightFeatures.map((text, index) => {
+  const key = `right-${index}`;
+  const isActive = activePoints[key];
 
-              <p className="text-green-800 text-sm">{text}</p>
-            </motion.div>
-          ))}
+  return (
+    <motion.div
+      key={index}
+      variants={rightItem}
+      onMouseEnter={() => handlePointHover("right", index)}
+      className="
+        flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer
+        bg-[#E7E1C8]
+      "
+    >
+      {/* ICON */}
+      <div
+        className={`
+          w-5 h-5 flex items-center justify-center rounded-full text-xs
+          transition-all duration-300
+
+          ${
+            isActive
+              ? "bg-green-800 text-white border-green-800"
+              : "border border-green-700 text-green-700"
+          }
+        `}
+      >
+        ✓
+      </div>
+
+      {/* TEXT */}
+      <p
+        className={`
+          text-sm transition-colors duration-300
+          ${isActive ? "text-green-900 font-medium" : "text-green-800"}
+        `}
+      >
+        {text}
+      </p>
+    </motion.div>
+  );
+})}
         </motion.div>
       </div>
     </div>

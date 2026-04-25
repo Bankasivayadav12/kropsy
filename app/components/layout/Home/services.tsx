@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import {
-  LuCamera,
-  LuFlaskConical,
-  LuTractor,
+import {LuCamera,LuFlaskConical,LuTractor,
   LuUpload,
   LuShoppingCart,
 } from "react-icons/lu";
 
-
+import { useState } from "react";
 
 
 export default function ServicesPage() {
+
+  const [activePoints, setActivePoints] = useState<{ [key: string]: boolean }>({});
+
 
   
   const services = [
@@ -133,6 +133,17 @@ export default function ServicesPage() {
     },
   };
 
+
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+
+  const handlePointHover = (cardIndex: number, pointIndex: number) => {
+  const key = `${cardIndex}-${pointIndex}`;
+  setActivePoints((prev) => ({
+    ...prev,
+    [key]: true,
+  }));
+};
   return (
     <div className="bg-[#E7E1C8] min-h-screen py-16 px-4">
 
@@ -160,54 +171,73 @@ export default function ServicesPage() {
         viewport={{ once: true }}
         className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {services.map((service, index) => {
-          const Icon = service.icon;
+      {services.map((service, index) => {
+  const Icon = service.icon;
+
+  return (
+    <motion.div key={index} className="bg-white rounded-2xl p-6">
+
+      {/* TITLE */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-green-800 p-2 rounded-lg">
+          <Icon className="text-white w-5 h-5" />
+        </div>
+
+        <h3 className="text-green-800 font-semibold text-md">
+          {service.title}
+        </h3>
+      </div>
+
+      {/* LIST */}
+      <ul className="space-y-3 text-sm text-green-700">
+        {service.points.map((point: string, i: number) => {
+          const key = `${index}-${i}`;
+          const isActive = activePoints[key];
 
           return (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
+            <li
+              key={i}
+              onMouseEnter={() => handlePointHover(index, i)}
+              className={`
+                flex items-start gap-3
+                p-2 rounded-md
+                transition-all duration-300
+
+                ${isActive ? "bg-green-50" : ""}
+              `}
             >
               {/* ICON */}
-              <div className="flex items-center gap-3 mb-4">
-                <motion.div
-                  className="bg-green-800 p-2 rounded-lg"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Icon className="text-white w-5 h-5" />
-                </motion.div>
+              <div
+                className={`
+                  w-5 h-5 flex items-center justify-center
+                  rounded-full text-xs transition-all duration-300
 
-                <h3 className="text-green-800 font-semibold text-md">
-                  {service.title}
-                </h3>
+                  ${
+                    isActive
+                      ? "bg-green-800 text-white"
+                      : "border border-green-700 text-green-700"
+                  }
+                `}
+              >
+                ✓
               </div>
 
-              {/* LIST */}
-              <motion.ul
-                variants={listContainerVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="space-y-3 text-sm text-green-700"
+              {/* TEXT */}
+              <span
+                className={`
+                  ${isActive ? "text-green-900" : "text-green-700"}
+                `}
               >
-                {service.points.map((point, i) => (
-                  <motion.li
-                    key={i}
-                    variants={listItemVariants}
-                    className="flex items-start gap-2"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center border border-green-700 rounded-full text-green-700 text-xs">
-                      ✓
-                    </div>
-                    <span>{point}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
+                {point}
+              </span>
+            </li>
           );
         })}
+      </ul>
+
+    </motion.div>
+  );
+})}
       </motion.div>
 
       {/* BUTTON */}
