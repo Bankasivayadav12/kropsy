@@ -10,7 +10,12 @@ import {
   LuShoppingCart,
 } from "react-icons/lu";
 
+
+
+
 export default function ServicesPage() {
+
+  
   const services = [
     {
       title: "AI Crop Monitoring",
